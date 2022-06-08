@@ -50,3 +50,12 @@ jobs:
     # 4. Build via Maven 
     - name: Build via Maven
       run: mvn verify -B --file pom.xml
+    
+    - name: Auto release
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Beta Build"
+        files: "target/*.jar"
